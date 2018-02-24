@@ -2,7 +2,7 @@ defmodule Around.CellSupervisor do
   use Supervisor
   alias Around.Cell
 
-  @num_cells 13
+  @num_cells 10000
 
   def start_link() do
     Supervisor.start_link(__MODULE__, :ok, name: __MODULE__)

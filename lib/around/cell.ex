@@ -2,19 +2,25 @@ defmodule Around.Cell do
   use ExActor.GenServer
   require Logger
 
-  @timedelay_offset 4000
-  @timedelay_variance 3000
+  # @timedelay_offset 4000
+  # @timedelay_variance 3000
+  @timedelay_offset 600
+  @timedelay_variance 200
 
-  @dx_variance 21
-  @dy_variance 21
-  @dx_offset -11
-  @dy_offset -11
+  # @dx_variance 7
+  # @dy_variance 7
+  # @dx_offset -4
+  # @dy_offset -4
+  @dx_variance 5
+  @dy_variance 5
+  @dx_offset -3
+  @dy_offset -3
 
-  @loc_init_variance 1001
-  @loc_init_offset -501
+  @loc_init_variance 151
+  @loc_init_offset -76
 
-  @go_back_distance 10_000
-  @safe_distance 9_000
+  @go_back_distance 188
+  @safe_distance 50
 
   defstart start_link do
     schedule_tick()

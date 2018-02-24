@@ -67,25 +67,50 @@ channel.join()
   .receive("error", resp => { console.log("Unable to join", resp) })
   
 let eventsDiv = document.getElementById('lastEvent')
-// el.innerHTML = 'hecc'
-// console.log('el:', el)
-
 let actors = []
 
+// channel.on('loc', ev => {
+//   console.log("locc", ev)
+
+//   let actor = actors[ev.pid]
+
+//   if (!actor) {
+//     actors[ev.pid] = actor = document.createElement("div")
+//     eventsDiv.appendChild(actor)
+//   }
+
+//   actor.innerHTML = JSON.stringify(ev)
+// })
+
+let svgWorld = document.getElementById('svgWorld')
+
 channel.on('loc', ev => {
-  console.log("locc", ev)
 
   let actor = actors[ev.pid]
 
   if (!actor) {
-    actor = document.createElement("div")
-    eventsDiv.appendChild(actor)
-    actors[ev.pid] = actor
+    actors[ev.pid] = actor = document.createElementNS("http://www.w3.org/2000/svg", 'rect')
+    actor.setAttribute('x', ev.x + 200)
+    actor.setAttribute('y', ev.y + 200)
+    actor.setAttribute('height', '1')
+    actor.setAttribute('width', '1')
+    svgWorld.appendChild(actor);
+  }
+  else {
+    actor.setAttribute('x', ev.x + 200)
+    actor.setAttribute('y', ev.y + 200)
   }
 
-  actor.innerHTML = JSON.stringify(ev)
+  // actor.innerHTML = JSON.stringify(ev)
 })
 
+// <rect x="10" y="10" width="30" height="30" stroke="black" fill="transparent" stroke-width="5"/>
+// var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+// newElement.setAttribute('x', 100)
+// newElement.setAttribute('y', '40')
+// newElement.setAttribute('height', '13')
+// newElement.setAttribute('width', '17')
+// world.appendChild(newElement);
 
 
 export default socket
