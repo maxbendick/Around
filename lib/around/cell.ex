@@ -16,10 +16,10 @@ defmodule Around.Cell do
   @dx_offset -3
   @dy_offset -3
 
-  @loc_init_variance 151
-  @loc_init_offset -76
+  @loc_init_variance 791
+  @loc_init_offset -396
 
-  @go_back_distance 188
+  @go_back_distance 388
   @safe_distance 50
 
   defstart start_link do
