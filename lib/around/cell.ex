@@ -66,7 +66,7 @@ defmodule Around.Cell do
   end
 
   defp broadcast_location(x, y) do
-    AroundWeb.Endpoint.broadcast("world:lobby", "loc", %{x: x, y: y})
+    AroundWeb.Endpoint.broadcast("world:lobby", "loc", %{pid: Kernel.inspect(self()), x: x, y: y})
   end
 
   def distance(x, y) do

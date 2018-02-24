@@ -66,7 +66,27 @@ channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
   
-channel.on('loc', a => console.log("locc", a))
+let el = document.getElementById('lastEvent')
+el.innerHTML = 'hecc'
+// console.log('el:', el)
+
+let actors = []
+
+channel.on('loc', ev => {
+  console.log("locc", ev)
+
+  if (!actors[ev.pid]) {
+    let newDiv = document.createElement("div")
+    let currentDiv = document.getElementById('lastEvent')
+    currentDiv.appendChild(newDiv)
+    actors[ev.pid] = newDiv
+  }
+
+  actors[ev.pid].innerHTML = JSON.stringify(ev)
+
+  // el.innerHTML = JSON.stringify(ev)
+})
+
 
 
 export default socket
